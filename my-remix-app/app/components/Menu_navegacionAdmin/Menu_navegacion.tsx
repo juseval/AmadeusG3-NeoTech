@@ -2,7 +2,7 @@ import { Link } from "@remix-run/react";
 import { Usuario } from "../../routes/Usuario";
 import "../../styles/Menu_navegacion.css";
 
-export function MenuNavegacion() {
+export function MenuNavegacionAdmin() {
   return (
     <header>
       <nav className="nav">
@@ -11,6 +11,7 @@ export function MenuNavegacion() {
           <ul className="nav__lista">
             <li><Link to="/">Inicio</Link></li>
             <li><a href="https://amadeus.com/es/contacto" target="_blank" rel="noreferrer">Contacto</a></li>
+            <li><Link to="/Report" target="_blank">Reporte</Link></li>
             <li><a href="https://amadeus.com/en" target="_blank" rel="noreferrer">Amadeus</a></li>
           </ul>
           <Usuario />

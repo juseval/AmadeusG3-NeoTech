@@ -15,7 +15,7 @@
 
 .infoUsuario{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 7px;
@@ -49,4 +49,13 @@
 
 .infoUsuario h3 span {
   font-weight: 200;
+}
+
+.dividir{
+  width: 50%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
