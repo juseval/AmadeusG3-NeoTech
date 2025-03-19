@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "@remix-run/react";
+import { useNavigate, useLocation } from "@remix-run/react";
+import {post} from "../services/destinoService";
 import { MenuNavegacion } from "../components/Menu_navegacion/Menu_navegacion";
 import "../styles/perfil.css";
 
@@ -13,7 +14,8 @@ const avatarImages = [
 export default function Perfil() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [nombre, setNombre] = useState("");
-  const [correo, setCorreo] = useState("");
+  const location = useLocation();
+  const { correo } = location.state || {};
   const [estadoCorreo, setEstadoCorreo] = useState("");
   const [aceptado, setAceptado] = useState(false);
   const [controlBoton, setControlBoton] = useState(true);
@@ -21,7 +23,15 @@ export default function Perfil() {
 
   useEffect(() => {
     verificarCorreo();
+    console.log("Correo recibido:",correo);
   }, [correo, aceptado]);
+
+  // useEffect(() => {
+  //   if (correo) {
+  //     console.log("Correo recibido: ", correo);
+  //     // Aquí puedes usar el valor de correo como necesites
+  //   }
+  // }, [correo]);
 
   const plusSlides = (n: number) => {
     setSlideIndex((prev) => (prev + n + avatarImages.length) % avatarImages.length);
@@ -31,13 +41,23 @@ export default function Perfil() {
     setSlideIndex(n);
   };
 
+  // const verificarCorreo = () => {
+  //   const regEmail =
+  //     /^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
+  //   if (!regEmail.test(correo)) {
+  //     setEstadoCorreo("Correo no válido");
+  //     setControlBoton(true);
+  //   } else if (!aceptado) {
+  //     setEstadoCorreo("Debe aceptar los términos y condiciones");
+  //     setControlBoton(true);
+  //   } else {
+  //     setEstadoCorreo("");
+  //     setControlBoton(false);
+  //   }
+  // };
+
   const verificarCorreo = () => {
-    const regEmail =
-      /^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
-    if (!regEmail.test(correo)) {
-      setEstadoCorreo("Correo no válido");
-      setControlBoton(true);
-    } else if (!aceptado) {
+    if (!aceptado) {
       setEstadoCorreo("Debe aceptar los términos y condiciones");
       setControlBoton(true);
     } else {
@@ -46,15 +66,31 @@ export default function Perfil() {
     }
   };
 
-  const datosUsuario = () => {
-    const datos = {
-      nombre,
-      correo,
-      avatar: avatarImages[slideIndex],
-    };
-    console.log("Datos enviados:", datos);
+  const user ={
+    full_Name: nombre,
+    email: location.state.correo,
+    tipo_Usuario: 0
+  }
 
-    navigate("/Tarjetas");
+  const datosUsuario = async () => {
+    console.log(user)
+    var response = await post(`user/create`, user);
+    console.log(response)
+    if ( response.status === 201) {
+      const data = await response.json();
+      var usuario = {
+        id: data.id,
+        full_Name: data.full_Name,
+        email: data.email,
+        tipo_Usuario: data.tipo_Usuario
+      }
+      localStorage.setItem("usuario", JSON.stringify(usuario));
+      localStorage.setItem("avatar", avatarImages[slideIndex]);
+      navigate("/Tarjetas");
+    }
+    else {
+      console.log("Error en datosUsuario")
+    }
   };
 
   return (
@@ -90,6 +126,7 @@ export default function Perfil() {
             </section>
 
             <section className="container__main__card__data">
+              <label className="container__main__card__data--checkbox">Completa tu perfil</label>
               <input
                 className="container__main__card__data--input"
                 type="text"
@@ -97,14 +134,14 @@ export default function Perfil() {
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
               />
-              <input
+              {/*<input
                 className="container__main__card__data--input"
                 type="email"
                 placeholder="Correo electrónico"
                 value={correo}
                 onChange={(e) => setCorreo(e.target.value)}
               />
-              <label className="container__main__card__data--alert">{estadoCorreo}</label>
+              <label className="container__main__card__data--alert">{estadoCorreo}</label>*/}
 
               <div className="container__main__card__data--personalData">
                 <input

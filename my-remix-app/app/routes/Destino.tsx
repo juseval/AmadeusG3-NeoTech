@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getDestinity } from '../services/destinoService';
-import { Link } from '@remix-run/react';
+import { get } from '../services/destinoService';
+import { Link, useNavigate } from '@remix-run/react';
 import { MenuNavegacion } from "../components/Menu_navegacion/Menu_navegacion";
 import '../styles/Destino.css'
 
@@ -15,35 +15,39 @@ interface Destino {
 }
 
 export default function Destino() {
+  const navigate = useNavigate();
   const [destinos, setDestinos] = useState<Destino[]>([]);
   const [america, setAmerica] = useState<Destino[]>([]);
   const [europa, setEuropa] = useState<Destino[]>([]);
   const [control, setControl] = useState(true);
 
   useEffect(() => {
-    const fetchDestinos = async () => {
-      const destinoAmerica = sessionStorage.getItem('destinoAmerica');
-      const destinoEuropa = sessionStorage.getItem('destinoEuropa');
-
-      if (destinoAmerica === 'Bora Bora') {
-        setControl(false);
-      } else {
-        setControl(true);
-      }
-
-      try {
-        const response = await getDestinity(
-          `searchName/${destinoAmerica}/${destinoEuropa}`
-        );
-        setDestinos(response);
-        filtrarDestinos(response);
-      } catch (error) {
-        console.error('Error al obtener destinos:', error);
-      }
-    };
-
-    fetchDestinos();
+    informacionDestinos();
   }, []);
+
+  const informacionDestinos = async () => {
+    const destinoAmerica = localStorage.getItem('destinoAmerica');
+    const destinoEuropa = localStorage.getItem('destinoEuropa');
+
+    console.log('Destino América:', destinoAmerica);
+    console.log('Destino Europa:', destinoEuropa);
+
+    if (destinoAmerica === 'Bora Bora') {
+      setControl(false);
+    } else {
+      setControl(true);
+    }
+
+    try {
+      var response = await get(`city/byNames/${destinoAmerica}/${destinoEuropa}`);
+      const data: Destino[] = await response.json();
+      console.log('Data:', data);
+      setDestinos(data);
+      filtrarDestinos(data);
+    } catch (error) {
+      console.error('Error al obtener destinos:', error);
+    }
+  };
 
   const filtrarDestinos = (destinosFiltrar: Destino[]) => {
     setAmerica(destinosFiltrar.filter(d => d.continente === 'América'));
@@ -52,6 +56,12 @@ export default function Destino() {
         d => d.continente === 'Europa' || d.continente === 'Asia'
       )
     );
+  };
+
+  const handleNavigate = (continent: string) => {
+      console.log("Continente seleccionado:", continent);
+      navigate("/Planes", { state: {continent} });
+      
   };
 
   return (
@@ -104,9 +114,9 @@ export default function Destino() {
           </div>
 
           <div className="opcion__link__item">
-            <Link to="/Planes">
+            <a onClick={() => handleNavigate('América')}>
               <img src="./paquete.png" alt="Paquete" />
-            </Link>
+            </a>
             <span className="tooltiptext">Explora tus opciones</span>
           </div>
         </section>
@@ -151,9 +161,9 @@ export default function Destino() {
           </div>
 
           <div className="opcion__link__item">
-            <Link to="/Planes">
+            <a onClick={() => handleNavigate('Europa')}>
               <img src="./paquete.png" alt="Paquete" />
-            </Link>
+            </a>
             <span className="tooltiptext">Explora tus opciones</span>
           </div>
         </section>

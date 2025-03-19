@@ -28,7 +28,15 @@ export function Usuario() {
   const [visible, setVisible] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const destinoService = useDestinoService();
+  var user = "{}"
+  var avatar = "https://cdn-icons-png.flaticon.com/512/9187/9187532.png";
+
+  if (typeof(localStorage) !== "undefined") {
+    user = localStorage.getItem("usuario") ?? "{}";
+    avatar = localStorage.getItem("avatar") ?? "https://cdn-icons-png.flaticon.com/512/9187/9187532.png";
+  }
+
+  const usuario = JSON.parse(user ?? "{}");
 
   const ruta = location.pathname;
 
@@ -37,14 +45,17 @@ export function Usuario() {
   };
 
   const cerrarSesion = () => {
-    destinoService.reset();
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("avatar");
+    localStorage.removeItem("destinoAmerica");
+    localStorage.removeItem("destinoEuropa");
     navigate("/");
   };
 
   return (
     <>
       <article className="usuario" onClick={handleVisible}>
-        <img className="avatar" src={destinoService.avatar} alt="avatar" />
+        <img className="avatar" src={avatar} alt="avatar" />
       </article>
 
       {visible && (
@@ -60,8 +71,8 @@ export function Usuario() {
             </>
           ) : (
             <>
-              <h3>Nombre: <span>{destinoService.nombreS}</span></h3>
-              <h3>Correo: <span>{destinoService.correoS}</span></h3>
+              <h3>Nombre: <span>{usuario.full_Name ?? ""}</span></h3>
+              <h3>Correo: <span>{usuario.email ?? ""}</span></h3>
               <button className="buttonSesion" onClick={cerrarSesion}>
                 Cerrar sesión
               </button>
