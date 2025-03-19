@@ -1,23 +1,34 @@
-import axios from 'axios';
+const baseURL = 'http://localhost:5260/api/';
 
-const axiosClient = axios.create({
-  baseURL: 'http://localhost:8080/api/',
-});
-
-export const getDestinity = async (endpoint: string) => {
+export async function get (endpoint: string) {
   try {
-    const response = await axiosClient.get(endpoint);
-    return response.data;
+    const response = await fetch(
+        baseURL + endpoint,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+    return response;
   } catch (error) {
     console.error('Error en getDestinity:', error);
     throw error;
   }
 };
 
-export const sendDestinity = async (endpoint: string, data: any) => {
+export const post = async (endpoint: string, data: any) => {
   try {
-    const response = await axiosClient.post(endpoint, data);
-    return response.data;
+    const response = await fetch(
+        baseURL + endpoint, 
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+    return response;
   } catch (error) {
     console.error('Error en sendDestinity:', error);
     throw error;
