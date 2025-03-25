@@ -30,8 +30,6 @@ export default function ModuloAdministrador() {
           <div id="contenedorDerechoSuperior">
             Calendario
           </div>
-          <div id="contenedorDerechoMedio"></div>
-          <div id="contenedorDerechoInferior"></div>
         </div>
       </div>
     </div>

@@ -61,6 +61,8 @@ export function Usuario() {
                 />
                 <button className="buttonSesion">Iniciar sesion</button>
               </div>
+              {/*  //Avatar administrativo 
+
               <div className="dividir">
                 <img
                   className="imgIcon"
@@ -68,7 +70,8 @@ export function Usuario() {
                   alt="planetaIcon"
                 />
                 <button onClick={()=>navigate("./administrador")} className="buttonSesion">Administrador</button>
-              </div>
+              </div>*/}
+              
             </>
           ) : (
             <>

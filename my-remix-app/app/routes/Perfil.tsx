@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "@remix-run/react";
 import { useNavigate } from "@remix-run/react";
 import { MenuNavegacion } from "../components/Menu_navegacion/Menu_navegacion";
 import "../styles/perfil.css";
@@ -11,6 +12,8 @@ const avatarImages = [
 ];
 
 export default function Perfil() {
+  const [searchParams] = useSearchParams();
+
   const [slideIndex, setSlideIndex] = useState(0);
   const [nombre, setNombre] = useState("");
   const [correo, setCorreo] = useState("");
@@ -18,6 +21,13 @@ export default function Perfil() {
   const [aceptado, setAceptado] = useState(false);
   const [controlBoton, setControlBoton] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const email = searchParams.get("correo");
+    if (email) {
+      setCorreo(email);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     verificarCorreo();
