@@ -57,11 +57,11 @@ export default function Destino() {
   return (
     <>
       <MenuNavegacion/>
-      <main className="conteiner">
-      <h1 className="conteiner__titulo">Tus Destinos:</h1>
+      <main className="conteiner_destino">
+      <h1 className="conteiner__titulo__destino">Tus Destinos:</h1>
 
       {!control && (
-        <h3 className="conteiner__titulo">
+        <h3 className="conteiner__titulo__destino">
           Tus Gustos son bastante exóticos, te sugerimos los siguientes lugares:
         </h3>
       )}

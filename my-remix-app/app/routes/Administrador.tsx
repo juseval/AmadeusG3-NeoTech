@@ -49,14 +49,15 @@ export default function Administrador() {
     }
   };
 
-  const datosUsuario = () => {
+  const datosUsuario = (e) => {
+    e.preventDefault();
     const datos = {
       correo,
       avatar: avatarImages[slideIndex],
     };
     console.log("Datos enviados:", datos);
 
-    navigate("/Tarjetas");
+    navigate("/ModuloAdministrador");
   };
 
   const toggleShowPassword = () => {
@@ -67,7 +68,7 @@ export default function Administrador() {
     <>
       <MenuNavegacion />
       <main className="container">
-        <form className="container__main" onSubmit={(e) => e.preventDefault()}>
+        <form className="container__main" onSubmit={(e)=>datosUsuario(e)}>
           <div className="container__main__card">
 
             <div id="tituloModulo">
@@ -110,9 +111,7 @@ export default function Administrador() {
 
               <button
                 className="container__main__card__data--button"
-                type="button"
-                onClick={datosUsuario}
-                disabled={controlBoton}
+                type="submit"
               >
                 Iniciar sesion 
                 <i className="fa-solid fa-right-to-bracket"></i>

@@ -1,7 +1,7 @@
-import { useNavigate } from "@remix-run/react";
-import { useState } from "react";
+import { useLocation, useNavigate } from "@remix-run/react";
+import { useState, useEffect } from "react";
 import { MenuNavegacion } from "../components/Menu_navegacion/Menu_navegacion";
-import '../styles/Tarjetas.css'
+import "../styles/Tarjetas.css";
 
 const preguntas = [
   "¿Que tipo de entorno prefieres para tus vacaciones?",
@@ -64,10 +64,22 @@ const datos = [
 ];
 
 export default function Tarjetas() {
+  const location = useLocation();
+
   const [indice, setIndice] = useState(0);
   const [opcSelect, setOpcSelect] = useState("");
   const [respuestas, setRespuestas] = useState<string[]>([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.state?.volverAIndice !== undefined) {
+      setIndice(location.state.volverAIndice);
+      setRespuestas(location.state.respuestas || []);
+      setOpcSelect(
+        location.state.respuestas?.[location.state.volverAIndice] || ""
+      );
+    }
+  }, [location.state]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOpcSelect(e.target.value);
@@ -88,14 +100,22 @@ export default function Tarjetas() {
 
   const atras = () => {
     if (indice > 0) {
+      const nuevasRespuestas = [...respuestas];
+      nuevasRespuestas[indice] = "";
+      setRespuestas(nuevasRespuestas);
       setIndice(indice - 1);
-      setOpcSelect(respuestas[indice - 1] || "");
+      setOpcSelect(nuevasRespuestas[indice - 1] || "");
     }
   };
 
   const calcularDestino = () => {
+    const nuevasRespuestas = [...respuestas];
+    nuevasRespuestas[indice] = opcSelect;
+  
+    setRespuestas(nuevasRespuestas);
+  
     navigate("/resultados", {
-      state: { respuestas },
+      state: { respuestas: nuevasRespuestas },
     });
   };
 
@@ -106,77 +126,85 @@ export default function Tarjetas() {
 
   return (
     <>
-      <MenuNavegacion/>
+      <MenuNavegacion />
       <main className="container__general">
-      <div className="titulo">
-        <h1 className="scale-in-ver-center">{pregunta}</h1>
-      </div>
+        <div className="titulo">
+          <h1 className="scale-in-ver-center">{pregunta}</h1>
+        </div>
 
-      <div className="container">
-        {[op1, op2, op3].map((opcion, i) => (
-          <label key={i} htmlFor={`opc${i + 1}`}>
-            <div className="card">
-              <div className="face front">
-                <img src={imgUrl[indice][i]} alt={`imagen_${i}`} />
-                <h3>{opcion}</h3>
+        <div className="container_opciones">
+          {[op1, op2, op3].map((opcion, i) => (
+            <label key={i} htmlFor={`opc${i + 1}`}>
+              <div className="cards">
+                <div className="face front">
+                  <img src={imgUrl[indice][i]} alt={`imagen_${i}`} />
+                  <h3>{opcion}</h3>
+                </div>
+                <div className="face back">
+                  <h3>¿Sabías qué...</h3>
+                  <p>{datos[indice][i]}</p>
+                </div>
               </div>
-              <div className="face back">
-                <h3>¿Sabías qué...</h3>
-                <p>{datos[indice][i]}</p>
-              </div>
-            </div>
-          </label>
-        ))}
-      </div>
-
-      <form className="radio">
-        {[op1, op2, op3].map((valor, i) => (
-          <div key={i}>
-            <label>
-              <input
-                type="radio"
-                id={`opc${i + 1}`}
-                name="opciones"
-                value={valor}
-                checked={opcSelect === valor}
-                onChange={handleChange}
-              />
             </label>
-          </div>
-        ))}
-      </form>
-
-      <div className="navegacion">
-        <ul>
-          <li className="perfil" onClick={() => navigate("/perfil")}>
-            Perfil
-          </li>
-          {[...Array(6).keys()].map((n) => (
-            <li key={n} className={indice === n ? "activo" : "contador"}>
-              {n + 1}
-            </li>
           ))}
-        </ul>
-      </div>
+        </div>
 
-      <form className="botones">
-        <button type="button" onClick={atras} disabled={indice === 0}>
-          Atrás
-        </button>
-        {indice < preguntas.length - 1 ? (
-          <button
-            type="button"
-            onClick={siguiente}
-            disabled={!verificarSeleccion()}
-          >
-            Siguiente
+        <form className="radio">
+          {[op1, op2, op3].map((valor, i) => (
+            <div key={i}>
+              <label>
+                <input
+                  type="radio"
+                  id={`opc${i + 1}`}
+                  name="opciones"
+                  value={valor}
+                  checked={opcSelect === valor}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+          ))}
+        </form>
+
+        <div className="navegacion">
+          <ul>
+            <li className="perfil" onClick={() => navigate("/perfil")}>
+              Perfil
+            </li>
+            {[...Array(preguntas.length).keys()].map((n) => {
+              let className = "contador";
+              if (indice === n) {
+                className = "activo";
+              } else if (respuestas[n]) {
+                className = "activo";
+              }
+              return (
+                <li key={n} className={className}>
+                  {n + 1}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+        <form className="botones">
+          <button type="button" onClick={atras} disabled={indice === 0}>
+            Atrás
           </button>
-        ) : (
-          <button type="button" onClick={calcularDestino}>
-            Calcular Destino
-          </button>
-        )}
-      </form>
+          {indice < preguntas.length - 1 ? (
+            <button
+              type="button"
+              onClick={siguiente}
+              disabled={!verificarSeleccion()}
+            >
+              Siguiente
+            </button>
+          ) : (
+            <button type="button" onClick={calcularDestino}>
+              Calcular Destino
+            </button>
+          )}
+        </form>
       </main>
     </>
   );

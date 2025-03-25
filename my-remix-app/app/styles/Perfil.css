@@ -13,14 +13,6 @@
   --colorButtonFont-dark: white;
 }
 
-* {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-  user-select: none;
-  font-family: sans-serif;
-}
-
 .container__main__card{
   display: grid;
 
@@ -50,7 +42,7 @@
   }
 }
 
-.container {
+.container_perfil {
   height: 90vh;
   width: 100wh;
 }

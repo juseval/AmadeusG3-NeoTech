@@ -17,12 +17,6 @@ export default function Planes() {
         </div>
 
         <h1 className="conteiner__encabezado__titulo">Destino seleccionado:</h1>
-
-        <div className="conteiner__encabezado__imagen">
-          <img src={srcA} alt="" />
-        </div>
-
-        <h2 className="conteiner__encabezado__nombre">{destino}</h2>
       </div>
 
       <div className="container__hospedaje">

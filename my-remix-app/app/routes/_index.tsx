@@ -8,7 +8,7 @@ export default function Index() {
     <>
       <MenuNavegacion />
       <section className="padre">
-        <div className="container">
+        <div className="container_index">
           <div className="play" onClick={llamarPagina}>
             
           </div>
@@ -18,8 +18,12 @@ export default function Index() {
               ¿Estás cansado de pasar horas buscando el destino perfecto para tu próximo viaje?
               ¿Te gustaría crear un viaje de acuerdo a tus preferencias y sin complicaciones?
               <br /><br />
-              <strong>¡Dale click a la imagen y prepárate para viajar!</strong>
             </p>
+            <input 
+                type="text"
+                placeholder="Correo electronico" 
+              />
+            <button>Iniciar!</button>
           </div>
         </div>
       </section>

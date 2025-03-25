@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "@remix-run/react";
 import { useEffect, useState } from "react";
-import '../styles/Resultados.css';
+import "../styles/Resultados.css";
 
 export default function Resultados() {
   const location = useLocation();
@@ -16,14 +16,16 @@ export default function Resultados() {
   }, [location, navigate]);
 
   return (
-    <main className="conteiner">
-      <h1 className="conteiner__titulo">Tus preferencias:</h1>
+    <main className="conteiner_resultados">
+      <h1 className="conteiner__titulo_resultados">Tus preferencias:</h1>
       <div className="conteiner--resumen">
         <div className="resumen__preguntas">
           <div className="resumen__preguntas__item">Preferencia Destino:</div>
           <div className="resumen__preguntas__item">Preferencia Climática:</div>
           <div className="resumen__preguntas__item">Preferencia Actividad:</div>
-          <div className="resumen__preguntas__item">Preferencia Alojamiento:</div>
+          <div className="resumen__preguntas__item">
+            Preferencia Alojamiento:
+          </div>
           <div className="resumen__preguntas__item">Duración viaje:</div>
           <div className="resumen__preguntas__item">Edad:</div>
         </div>
@@ -42,8 +44,19 @@ export default function Resultados() {
       </div>
 
       <div className="conteiner__botones">
-        <button type="button" onClick={() => navigate("/tarjetas")}>Atrás</button>
-        <button type="button" onClick={() => navigate("/destino")}>Confirmar</button>
+        <button
+          type="button"
+          onClick={() =>
+            navigate("/tarjetas", {
+              state: { respuestas, volverAIndice: 5 },
+            })
+          }
+        >
+          Atrás
+        </button>
+        <button type="button" onClick={() => navigate("/destino")}>
+          Confirmar
+        </button>
       </div>
     </main>
   );

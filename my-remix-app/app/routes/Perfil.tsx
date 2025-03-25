@@ -60,7 +60,7 @@ export default function Perfil() {
   return (
     <>
       <MenuNavegacion/>
-      <main className="container">
+      <main className="container_perfil">
         <form className="container__main" onSubmit={(e) => e.preventDefault()}>
           <div className="container__main__card">
             <section className="container__main__card__avatar">

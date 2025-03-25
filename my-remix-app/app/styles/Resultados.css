@@ -1,7 +1,4 @@
-*{
-  margin: 0;
-  padding: 0;
-}
+
 
 @-webkit-keyframes slide-in-bottom {
   0% {
@@ -81,7 +78,7 @@
   }
 }
 
-.conteiner{
+.conteiner_resultados{
   height: 80vh;
   width: 100%;
   margin-top: 5vh;
@@ -93,7 +90,7 @@
   font-family: sans-serif;
 }
 
-.conteiner__titulo {
+.conteiner__titulo__resultados {
   height: 15vh;
   display: flex;
   justify-content: center;

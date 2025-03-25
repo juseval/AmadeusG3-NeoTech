@@ -67,21 +67,21 @@
   box-shadow: 9px 9px 22px -9px #3a8bff;
 }
 
-.container{
+.container_opciones{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   
 }
-.card{
+.cards{
   position: relative;
   width: 250px;
   height: 250px;
   margin: 20px;
 }
 
-.card .face{
+.cards .face{
   position: absolute;
   width: 100%;
   height: 100%;
@@ -90,7 +90,7 @@
   transition: 0.8s;
 }
 
-.card .front{
+.cards .front{
   transform: perspective(600px) rotateY(0deg);
   -webkit-box-shadow: 18px 14px 0px 2px #c5d5f9;
   -moz-box-shadow: 18px 14px 0px 2px #c5d5f9;
@@ -98,14 +98,14 @@
 
 }
 
-.card .front img{
+.cards .front img{
   position:absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.card .front h3{
+.cards .front h3{
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -116,7 +116,7 @@
   text-align: center;
 }
 
-.card .back {
+.cards .back {
   transform:perspective(600px) rotateY(180deg);
   background:#c5d5f9 ;
   padding: 15px;
@@ -128,22 +128,22 @@
   box-shadow: 0 5px 10px #3a8bff;
 }
 
-.card .back .h3{
+.cards .back .h3{
   font-size: 30px;
   margin-top:20px;
   letter-spacing:2px ;
 } 
 
-.card .back p{
+.cards .back p{
   letter-spacing: 1px;
 }
 
-.card:hover .front{
+.cards:hover .front{
   transform: perspective(600px) rotateY(180deg);
   
 }
 
-.card:hover .back{
+.cards:hover .back{
   transform: perspective(600px) rotateY(360deg);
 }
 
@@ -198,6 +198,19 @@
   text-decoration: none;
   border-radius: 10px;
   position: relative;
+}
+
+.activo{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 15px 15px;
+  color: white;
+  text-decoration: none;
+  background-color:#3a8bff;
+  border-radius: 10px;
+  position: relative;  
+  border-radius: 10px;
+  width: auto;
 }
 
 .perfil { 
@@ -267,7 +280,7 @@
       text-align: center;
   }
 
-  .container{
+  .container_opciones{
       width: 85%;
   }
   .container__general{
@@ -289,7 +302,7 @@
       flex-direction: column;
   }
 
-  .container{
+  .container_opciones{
       display: flex;
       flex-direction: column;
   }
@@ -299,7 +312,7 @@
 }
 
 @media (max-width: 470px) {
-  .container {
+  .container_opciones {
       flex-direction: column;
       width: 100%;
   }
@@ -347,7 +360,7 @@
   .container__general {
       width: 100%;
   }
-  .container {
+  .container_opciones {
       width: 95%;
   }
   .container__general {
