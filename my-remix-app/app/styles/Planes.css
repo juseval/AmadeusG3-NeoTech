@@ -29,10 +29,16 @@
   width: 200px;
 }
 
-img{
+.img{
+  height: 100%;
   width: 100%;
-  height: auto;
   object-fit: cover;
+}
+
+.img__vuelo{
+  width: 100%;
+  object-fit:scale-down;
+  height: 100%;
 }
 
 .container__hospedaje {
@@ -156,11 +162,11 @@ img{
   margin-top: auto;
 }
 
-h3 {
+.container__hospedaje__nombre {
   text-align: center;
 }
 
-h2 {
+.container__encabezado__nombre {
   margin-top: 10px;
 }
 

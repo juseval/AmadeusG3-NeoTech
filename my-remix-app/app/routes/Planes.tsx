@@ -70,14 +70,14 @@ export default function Planes() {
 
       <h1 className="container__encabezado__titulo">Destino seleccionado:</h1>
       <div className="container__encabezado__imagen">
-        <img src={img} alt="Imagen del destino seleccionado"/>
+        <img className="img" src={img} alt="Imagen del destino seleccionado"/>
       </div>
       <h2 className="container__encabezado__nombre">{name}</h2>
     </div>
 
     <div className="container__hospedaje">
 
-      <h2>Tus opciones de hospedaje:</h2>
+      <h2 className="container__encabezado__nombre">Tus opciones de hospedaje:</h2>
 
       <div>
         <p> Estas son las opciones de hospedaje que te recomendamos según tus
@@ -88,11 +88,11 @@ export default function Planes() {
         <div className="container__hospedaje__opcion">
 
           <div className="container__hospedaje__opcion__img">
-            <img src="./airbnb.png" alt="Imagen de Airbnb" />
+            <img className="img" src="./airbnb.png" alt="Imagen de Airbnb" />
           </div>
 
           <div className="container__hospedaje__opcion__info">
-            <h3>airbnb</h3>
+            <h3 className="container__hospedaje__nombre">airbnb</h3>
             <p>
               Explora alojamientos únicos, desde acogedores apartamentos en el corazón de la ciudad hasta exóticas casas en árboles.
               Viaja de una manera más auténtica y personalizada, creando recuerdos inolvidables en cada destino.
@@ -103,11 +103,11 @@ export default function Planes() {
     
         <div className="container__hospedaje__opcion">
           <div className="container__hospedaje__opcion__img">
-            <img src={imgHotel} alt={`Imagen del ${hotelName}`} />
+            <img className="img" src={imgHotel} alt={`Imagen del ${hotelName}`} />
           </div>
 
           <div className="container__hospedaje__opcion__info">
-            <h3>{hotelName}</h3>
+            <h3 className="container__hospedaje__nombre">{hotelName}</h3>
             <p>{description}</p>
             <a className="container_hospedaje_button"  target="_blank" href={urlHotel}>Explora tu Hotel</a>
           </div>
@@ -117,7 +117,7 @@ export default function Planes() {
 
     <div className="container__vuelos">
 
-      <h2>Tus opciones de vuelos:</h2>
+      <h2 className="container__encabezado__nombre">Tus opciones de vuelos:</h2>
       <div className="vuelo-container">
         <p className="txt-parrafo">
           Estos son las dos opciones de vuelos que te recomendamos según tus
@@ -129,11 +129,11 @@ export default function Planes() {
         <div className="container__vuelos__opcion">
 
           <div className="container__hospedaje__opcion__img">
-            <img src="./Avianca.png" alt="Imagen de un avión de Avianca" />
+            <img className="img__vuelo" src="./Avianca.png" alt="Imagen de un avión de Avianca" />
           </div>
 
           <div className="container__hospedaje__opcion__info">
-            <h3>Avianca</h3>
+            <h3 className="container__hospedaje__nombre">Avianca</h3>
             <p className="txt-parrafo">
               es la aerolínea bandera de Colombia y una de las más grandes de América Latina. Fundada en 1919, opera vuelos a más de 90 destinos en América, Europa, Asia y el Caribe.
               Es miembro de la alianza Star Alliance y se enfoca en ofrecer un servicio excepcional y conexiones globales a sus pasajeros
@@ -146,11 +146,11 @@ export default function Planes() {
         <div className="container__vuelos__opcion">
 
           <div className="container__hospedaje__opcion__img">
-            <img src="./Air-Europa-logo.png" alt="Imagen de un avión de Aeromexico"/>
+            <img className="img__vuelo" src="./Air-Europa-logo.png" alt="Imagen de un avión de Aeromexico"/>
           </div>
 
           <div className="container__hospedaje__opcion__info">
-            <h3>Air Europa</h3>
+            <h3 className="container__hospedaje__nombre">Air Europa</h3>
             <p className="txt-parrafo">
               Es una aerolínea española fundada en 1984, con sede en Lluchmayor, Mallorca.
               Es miembro de la alianza SkyTeam y opera vuelos a más de 130 destinos en todo el mundo.
