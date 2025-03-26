@@ -1,68 +1,87 @@
-import { useState } from "react";
-import { MenuNavegacion } from "../components/Menu_navegacion/Menu_navegacion";
+import {MenuNavegacion} from "../components/Menu_navegacion/Menu_navegacion";
+import { useState, useEffect } from "react";
 import { useNavigate } from "@remix-run/react";
-import "../styles/index.css";
-import datos from "../data/usuarios.json";
+import {get} from "../services/destinoService";
+import '../styles/index.css';
+        
+
 export default function Index() {
+  
+  const [correo, setCorreo] = useState("");
+  const [estadoCorreo, setEstadoCorreo] = useState("");
+  const [aceptado, setAceptado] = useState(false);
+  const [controlBoton, setControlBoton] = useState(true);
   const navigate = useNavigate();
-  const [valorInput, setvalorInput] = useState("");
+  
+  useEffect(() => {
+    verificarCorreo();
+  }, [correo, aceptado]);
 
-  const manejarInput = (e) => {
-    setvalorInput(e.target.value);
+  const verificarCorreo = () => {
+    const regEmail =
+      /^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
+    
+    if(correo === ""){
+      setEstadoCorreo("");
+    } else if (!regEmail.test(correo)) {
+      setEstadoCorreo("Correo no válido");
+      setControlBoton(true);
+    } else {
+      setEstadoCorreo("");
+      setControlBoton(false);
+    }
   };
 
-  const comprobarAdmin = () => {
-    let bandera = true;
-
-    if (valorInput === "") {
-      alert("Debes llenar el campo de correo");
-      return
-    }
-
-    datos.usuarios.forEach(usuario => {
-      if (valorInput === usuario.correo) {
-        const contrasena = prompt('Digita tu contraseña: ');
-        
-        if (contrasena === usuario.contrasena) {
-          window.location.href = "./ModuloAdministrador"
-        }else{
-          alert('No es correcto');
+  const datosUsuario = async () => {
+      var response = await get(`user/byEmail/${correo}`)
+      console.log(response)
+      if ( response.status === 200) {
+        const data = await response.json();
+        var usuario = {
+          id: data.id,
+          full_Name: data.full_Name,
+          email: data.email,
+          tipo_Usuario: data.tipo_Usuario
         }
-        
-        bandera = false;
-        return
+        localStorage.setItem("usuario", JSON.stringify(usuario));
+        localStorage.setItem("avatar", "./ava11.png");
+        navigate("/Tarjetas");
       }
-    });
-
-    if (bandera) {
-      navigate(`/perfil?correo=${encodeURIComponent(valorInput)}`);
-      return
-    }
+      else {
+        navigate("/Perfil", {
+          state: {correo},
+        });
+      }
   };
-
   return (
     <>
       <MenuNavegacion />
       <section className="padre">
         <div className="container_index">
-          <div className="play"></div>
+          <div className="play" /*onClick={llamarPagina}*/>
+          </div>
           <div className="nosotros">
             <h1>Información</h1>
             <p>
-              ¿Estás cansado de pasar horas buscando el destino perfecto para tu
-              próximo viaje? ¿Te gustaría crear un viaje de acuerdo a tus
-              preferencias y sin complicaciones?
-              <br />
-              <br />
+              ¿Estás cansado de pasar horas buscando el destino perfecto para tu próximo viaje?
+              ¿Te gustaría crear un viaje de acuerdo a tus preferencias y sin complicaciones?
+              <br /><br />
+                {/* <strong>¡Dale click a la imagen y prepárate para viajar!</strong> */}
             </p>
-
             <input
-              type="text"
-              placeholder="Correo electronico"
-              value={valorInput}
-              onChange={(e) => manejarInput(e)}
+                className="container__main__card__data--input"
+                type="email"
+                placeholder="Correo electrónico"
+                value={correo}
+                onChange={(e) => setCorreo(e.target.value)}
             />
-            <button onClick={comprobarAdmin}>
+            <label className="container__main__card__data--alert">{estadoCorreo}</label>
+            <button
+                className="container__main__card__data--button"
+                type="button"
+                onClick={datosUsuario}
+                disabled={controlBoton}
+              >
               <div className="svg-wrapper">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
