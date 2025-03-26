@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "@remix-run/react";
 import {get} from "../services/destinoService";
 import '../styles/index.css';
+        
 
 export default function Index() {
   
@@ -52,14 +53,12 @@ export default function Index() {
         });
       }
   };
-
   return (
     <>
       <MenuNavegacion />
       <section className="padre">
-        <div className="container">
+        <div className="container_index">
           <div className="play" /*onClick={llamarPagina}*/>
-            
           </div>
           <div className="nosotros">
             <h1>Información</h1>
@@ -83,10 +82,23 @@ export default function Index() {
                 onClick={datosUsuario}
                 disabled={controlBoton}
               >
-                ¡Iniciar!
+              <div className="svg-wrapper">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path fill="none" d="M0 0h24v24H0z"></path>
+                  <path
+                    fill="currentColor"
+                    d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                  ></path>
+                </svg>
+              </div>
+              <span>Iniciar</span>
             </button>
           </div>
-          
         </div>
       </section>
     </>

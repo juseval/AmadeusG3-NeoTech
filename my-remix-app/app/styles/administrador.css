@@ -13,6 +13,14 @@
   --colorButtonFont-dark: white;
 }
 
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  user-select: none;
+  font-family: sans-serif;
+}
+
 .container__main__card{
   display: grid;
 
@@ -42,7 +50,7 @@
   }
 }
 
-.container_perfil {
+.container {
   height: 90vh;
   width: 100wh;
 }
@@ -62,6 +70,7 @@
   height: fit-content;
   width: fit-content;
   margin: auto;
+  position: relative;
   /* padding: 2rem 4rem; */
 }
 
@@ -191,6 +200,7 @@
   width: 100%;
   padding: 0.5rem 0.5rem;
   text-align: center;
+  outline: none;
 }
 
 .container__main__card__data--personalData{
@@ -222,6 +232,10 @@
   /* font-size: larger; */
   text-align: center;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 
   &:hover {
       background-color: var(--colorButtonHover-dark);
@@ -294,3 +308,33 @@
 /*  --- INICIO --- @keyframe  */
 
 /*  --- FIN ---  @keyframe  */
+
+.input-password-wrapper{
+  display: flex;
+  background-color: #fff;
+  align-items: center;
+  padding: 0.2vw;
+}
+
+i{
+  color: gray;
+  cursor: pointer;
+}
+
+.fa-right-to-bracket{
+  color: white;
+  position: absolute;
+  right: 1vw;
+}
+
+#tituloModulo{
+  position: absolute;
+  top: -5.3vw;
+  right: 0vw;
+  background-color:  var(--colorBand-dark);
+  border: 2.5px  solid black;
+  padding: 1.2vw 2.5vw;
+  border-radius: 50% 50% 0 0;
+  color: white;
+  font-size: 2.5vw;
+}

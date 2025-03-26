@@ -41,13 +41,11 @@ export default function Resultados() {
       console.log("Error en guardar las Respuestas");
     }
   };
-  
-
   return (
     <>
       <MenuNavegacion />
-      <main className="conteiner">
-        <h1 className="conteiner__titulo">Tus preferencias:</h1>
+      <main className="conteiner_resultados">
+        <h1 className="conteiner__titulo_resultados">Tus preferencias:</h1>
         <div className="conteiner--resumen">
           <div className="resumen__preguntas">
             <div className="resumen__preguntas__item">Preferencia Destino:</div>
@@ -57,7 +55,6 @@ export default function Resultados() {
             <div className="resumen__preguntas__item">Duración viaje:</div>
             <div className="resumen__preguntas__item">Edad:</div>
           </div>
-
           <form className="resumen__respuestas">
             {respuestas.map((respuesta, i) => (
               <div className="resumen__respuestas__item" key={i}>
@@ -70,9 +67,17 @@ export default function Resultados() {
             <i className="fa-solid fa-plane-up slide-in-bottom vibrate-1"></i>
           </div>
         </div>
-
         <div className="conteiner__botones">
-          <button type="button" onClick={() => navigate("/tarjetas")}>Atrás</button>
+          <button
+            type="button"
+            onClick={() =>
+              navigate("/tarjetas", {
+                state: { respuestas, volverAIndice: 5 },
+              })
+            }
+          >
+            Atrás
+          </button>
           <button type="button" onClick={guardarRespuestas}>Confirmar</button>
         </div>
       </main>

@@ -67,7 +67,6 @@ export default function Planes() {
         <Link to="/destino"><i className="fa-solid fa-arrow-left"></i></Link>
         <span className="tooltiptext">Volver a tu destino</span>
       </div>
-
       <h1 className="container__encabezado__titulo">Destino seleccionado:</h1>
       <div className="container__encabezado__imagen">
         <img className="img" src={img} alt="Imagen del destino seleccionado"/>

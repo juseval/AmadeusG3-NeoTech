@@ -3,7 +3,9 @@ import { useLocation, useNavigate } from "@remix-run/react";
 import "../styles/Usuario.css";
 
 const useDestinoService = () => {
-  const [avatar, setAvatar] = useState("https://cdn-icons-png.flaticon.com/512/9187/9187532.png");
+  const [avatar, setAvatar] = useState(
+    "https://cdn-icons-png.flaticon.com/512/9187/9187532.png"
+  );
   const [nombreS, setNombreS] = useState("");
   const [correoS, setCorreoS] = useState("");
 
@@ -20,7 +22,7 @@ const useDestinoService = () => {
       setAvatar(avatar);
       setNombreS(nombre);
       setCorreoS(correo);
-    }
+    },
   };
 };
 
@@ -60,14 +62,27 @@ export function Usuario() {
 
       {visible && (
         <div className="infoUsuario">
-          {(ruta === "/" || ruta === "/Perfil") ? (
+          {ruta === "/" || ruta === "/Perfil" ? (
             <>
-              <img
-                className="imgIcon"
-                src="https://cdn-icons-png.flaticon.com/512/995/995168.png"
-                alt="planetaIcon"
-              />
-              <button className="buttonSesion">Iniciar travesía</button>
+              <div className="dividir">
+                <img
+                  className="imgIcon"
+                  src="https://cdn-icons-png.flaticon.com/512/995/995168.png"
+                  alt="planetaIcon"
+                />
+                <button className="buttonSesion">Iniciar sesion</button>
+              </div>
+              {/*  //Avatar administrativo 
+
+              <div className="dividir">
+                <img
+                  className="imgIcon"
+                  src="https://cdn-icons-png.flaticon.com/512/9187/9187532.png"
+                  alt="planetaIcon"
+                />
+                <button onClick={()=>navigate("./administrador")} className="buttonSesion">Administrador</button>
+              </div>*/}
+              
             </>
           ) : (
             <>

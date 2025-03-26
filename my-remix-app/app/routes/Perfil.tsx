@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "@remix-run/react";
+import { useNavigate, useLocation, useSearchParams } from "@remix-run/react";
 import {post} from "../services/destinoService";
 import { MenuNavegacion } from "../components/Menu_navegacion/Menu_navegacion";
 import "../styles/perfil.css";
@@ -12,6 +12,8 @@ const avatarImages = [
 ];
 
 export default function Perfil() {
+  const [searchParams] = useSearchParams();
+
   const [slideIndex, setSlideIndex] = useState(0);
   const [nombre, setNombre] = useState("");
   const location = useLocation();
@@ -20,6 +22,13 @@ export default function Perfil() {
   const [aceptado, setAceptado] = useState(false);
   const [controlBoton, setControlBoton] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const email = searchParams.get("correo");
+    if (email) {
+      setCorreo(email);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     verificarCorreo();
@@ -96,7 +105,7 @@ export default function Perfil() {
   return (
     <>
       <MenuNavegacion/>
-      <main className="container">
+      <main className="container_perfil">
         <form className="container__main" onSubmit={(e) => e.preventDefault()}>
           <div className="container__main__card">
             <section className="container__main__card__avatar">

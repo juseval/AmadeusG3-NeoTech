@@ -1,10 +1,12 @@
-import { useNavigate } from "@remix-run/react";
 import { useState, useEffect } from "react";
 import { get } from "~/services/destinoService";
+import { useLocation, useNavigate } from "@remix-run/react";
 import { MenuNavegacion } from "../components/Menu_navegacion/Menu_navegacion";
-import '../styles/Tarjetas.css'
+import "../styles/Tarjetas.css";
 
 export default function Tarjetas() {
+  const location = useLocation();
+
   const [indice, setIndice] = useState(0);
   const [preguntas, setPreguntas] = useState<string[]>([]);
   const [opciones, setOpciones] = useState<string[][]>([]);
@@ -65,7 +67,6 @@ export default function Tarjetas() {
       datos: Object.values(datosAgrupadas).map(group => group.slice(0, 3))
     };
   };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOpcSelect(e.target.value);
   };
@@ -98,12 +99,14 @@ export default function Tarjetas() {
 
   const atras = () => {
     if (indice > 0) {
+      const nuevasRespuestas = [...respuestas];
+      nuevasRespuestas[indice] = "";
+      setRespuestas(nuevasRespuestas);
       setIndice(indice - 1);
-      setOpcSelect(respuestas[indice - 1] || "");
+      setOpcSelect(nuevasRespuestas[indice - 1] || "");
     }
     console.log("Respuestas: ", respuestas);
   };
-
 
   const pregunta = preguntas[indice];
   const opcionesActuales = opciones[indice] || [];
@@ -117,11 +120,10 @@ export default function Tarjetas() {
         <div className="titulo">
           <h1 className="scale-in-ver-center">{pregunta}</h1>
         </div>
-
-        <div className="container">
+        <div className="container_opciones">
           {opcionesActuales.map((opcion, i) => (
             <label key={i} htmlFor={`opc${i + 1}`}>
-              <div className="card">
+              <div className="cards">
                 <div className="face front">
                   <img src={imgUrlsActuales[i]} alt={`imagen_${i}`} />
                   <h3>{opcion}</h3>
@@ -134,7 +136,6 @@ export default function Tarjetas() {
             </label>
           ))}
         </div>
-
         <form className="radio">
           {opcionesActuales.map((valor, i) => (
             <div key={i}>
@@ -157,14 +158,21 @@ export default function Tarjetas() {
             <li className="perfil" onClick={() => navigate("/perfil")}>
               Perfil
             </li>
-            {[...Array(6).keys()].map((n) => (
-              <li key={n} className={indice === n ? "activo" : "contador"}>
-                {n + 1}
-              </li>
-            ))}
+            {[...Array(6).keys()].map((n) => {
+              let className = "contador";
+              if (indice === n) {
+                className = "activo";
+              } else if (respuestas[n]) {
+                className = "activo";
+              }
+              return (
+                <li key={n} className={className}>
+                  {n + 1}
+                </li>
+              );
+            })}
           </ul>
         </div>
-
         <form className="botones">
           <button type="button" onClick={atras} disabled={indice === 0}>
             Atrás
