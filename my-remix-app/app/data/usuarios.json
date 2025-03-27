@@ -1,0 +1,44 @@
+{
+  "usuarios": [
+    {
+      "correo": "maria@gmail.com",
+      "contrasena": "25241",
+      "tipo": "normal"
+    },
+    {
+      "correo": "carlos@hotmail.com",
+      "contrasena": "123456",
+      "tipo": "normal"
+    },
+    {
+      "correo": "laura@yahoo.com",
+      "contrasena": "98765",
+      "tipo": "administrador"
+    },
+    {
+      "correo": "andres@gmail.com",
+      "contrasena": "4321",
+      "tipo": "administrador"
+    },
+    {
+      "correo": "sofia@outlook.com",
+      "contrasena": "13579",
+      "tipo": "normal"
+    },
+    {
+      "correo": "daniel@hotmail.com",
+      "contrasena": "24680",
+      "tipo": "normal"
+    },
+    {
+      "correo": "ana@gmail.com",
+      "contrasena": "11111",
+      "tipo": "administrador"
+    },
+    {
+      "correo": "fernando@yahoo.com",
+      "contrasena": "654321",
+      "tipo": "administrador"
+    }
+  ]
+}
