@@ -214,8 +214,9 @@
 }
 
 .perfil { 
-  color: #c5d5f9;
-  background-color: #3a8bff;
+  color: #000835;
+  text-decoration: none;
+  background-color:#c5d5f9;
   display: flex;
   justify-content: space-evenly;
   padding: 15px 15px;
@@ -226,8 +227,9 @@
 
 
 .perfil:hover{
-  background-color:#c5d5f9;
-  color: #000835;
+  color: white;
+  text-decoration: none;
+  background-color:#3a8bff;
   cursor: pointer;
 }
 

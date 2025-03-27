@@ -86,11 +86,13 @@ export function Usuario() {
             </>
           ) : (
             <>
-              <h3>Nombre: <span>{usuario.full_Name ?? ""}</span></h3>
-              <h3>Correo: <span>{usuario.email ?? ""}</span></h3>
-              <button className="buttonSesion" onClick={cerrarSesion}>
-                Cerrar sesión
-              </button>
+              <div>
+                <h3>Nombre: <span>{usuario.full_Name ?? ""}</span></h3>
+                <h3>Correo: <span>{usuario.email ?? ""}</span></h3>
+                <button className="buttonSesion" onClick={cerrarSesion}>
+                  Cerrar sesión
+                </button>
+              </div>
             </>
           )}
         </div>

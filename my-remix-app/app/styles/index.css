@@ -65,7 +65,7 @@
 }
 
 .nosotros > button{
-  font-family: inherit;
+  /*font-family: inherit;*/
   font-size: 20px;
   background: royalblue;
   color: white;
