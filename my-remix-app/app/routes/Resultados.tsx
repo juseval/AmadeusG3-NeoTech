@@ -58,7 +58,7 @@ export default function Resultados() {
           <form className="resumen__respuestas">
             {respuestas.map((respuesta, i) => (
               <div className="resumen__respuestas__item" key={i}>
-                <input type="text" value={respuesta} readOnly />
+                <input className="resumen__respuestas__input" type="text" value={respuesta} readOnly />
               </div>
             ))}
           </form>
@@ -68,7 +68,7 @@ export default function Resultados() {
           </div>
         </div>
         <div className="conteiner__botones">
-          <button
+          <button className="boton"
             type="button"
             onClick={() =>
               navigate("/tarjetas", {
@@ -78,7 +78,7 @@ export default function Resultados() {
           >
             Atrás
           </button>
-          <button type="button" onClick={guardarRespuestas}>Confirmar</button>
+          <button className="boton" type="button" onClick={guardarRespuestas}>Confirmar</button>
         </div>
       </main>
     </>

@@ -3,6 +3,7 @@ import { BarList } from "./tremor/BarList";
 import { get } from "../services/destinoService";
 import { MenuNavegacion } from "../components/Menu_navegacion/Menu_navegacion";
 import { useState, useEffect } from "react";
+import { useNavigate } from "@remix-run/react";
 import {
   Table,
   TableBody,
@@ -25,6 +26,7 @@ export default function Report() {
   var [answersByQ, setAnswersByQ] = useState<Array<{ id: number, data: Array<{ name: string, amount: number }> }>>([]);
   var [dataUser, setDataUser] = useState<Array<{ id: number, full_Name: string, email: string}>>([]);
   var [dataUserA, setDataUserA] = useState<Array<{ id: number, full_Name: string, email: string}>>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     datosUsuario();
@@ -80,8 +82,9 @@ export default function Report() {
     <>
       <MenuNavegacion/>
       <div>
-        <Card>
+        <Card className="grid grid-cols-2 gap-5 mt-8" style={{ width: "100%" }}>  
           <h1 className="text-2xl font-bold">Estadisticas</h1>
+            <button className="text-blue-500 hover:text-blue-700 font-bold text-lg back" onClick={() => {navigate("/Tarjetas");}}>Regresar a Tarjetas</button>
         </Card>
       </div >
         <div className="flex flex-row justify-center gap-5">

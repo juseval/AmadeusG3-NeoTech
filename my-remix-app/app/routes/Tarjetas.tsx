@@ -18,6 +18,10 @@ export default function Tarjetas() {
 
   useEffect(() => {
     obtenerDatos();
+    if (location.state?.respuestas) {
+      setRespuestas(location.state.respuestas);
+      setIndice(location.state.volverAIndice);
+    }
   }, []);
 
   const obtenerDatos = async () => {
@@ -155,8 +159,14 @@ export default function Tarjetas() {
 
         <div className="navegacion">
           <ul>
-            <li className="perfil" onClick={() => navigate("/perfil")}>
-              Perfil
+            <li
+              className="perfil"
+              onClick={() => {
+              localStorage.clear();
+              navigate("/");
+              }}
+            >
+              Inicio
             </li>
             {[...Array(6).keys()].map((n) => {
               let className = "contador";
