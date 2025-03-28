@@ -35,8 +35,9 @@ Para instalar y configurar el proyecto realizar lo siguiente:
 5. Ejecutar proyecto BackEnd y Base de datos
    https://github.com/dcastrog111/AmadeusG3-NeoTech-BackEnd
 
-## Flujo de la aplicación
-<img width="773" alt="flujoAplicacion" src="https://github.com/user-attachments/assets/08da4a57-b691-400c-b13b-ae71e8121a24" />
+## Flujo
+<img width="521" alt="flujoAplicacion" src="https://github.com/user-attachments/assets/03e71df7-06fa-4ac9-a0ae-d3fe99910242" />
+
 
 ## Licencia
 Dominio Público
