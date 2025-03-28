@@ -45,7 +45,7 @@ export default function Resultados() {
     <>
       <MenuNavegacion />
       <main className="conteiner_resultados">
-        <h1 className="conteiner__titulo_resultados">Tus preferencias:</h1>
+        <h1 className="conteiner__titulo__resultados">Tus preferencias:</h1>
         <div className="conteiner--resumen">
           <div className="resumen__preguntas">
             <div className="resumen__preguntas__item">Preferencia Destino:</div>
