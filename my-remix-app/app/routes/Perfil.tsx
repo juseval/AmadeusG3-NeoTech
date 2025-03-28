@@ -137,7 +137,7 @@ export default function Perfil() {
             <section className="container__main__card__data">
               <label className="container__main__card__data--checkbox">Completa tu perfil</label>
               <input
-                className="container__main__card__data--input"
+                className="container__main__card__data--input2"
                 type="text"
                 placeholder="Nombre"
                 value={nombre}
@@ -173,7 +173,7 @@ export default function Perfil() {
               </div>
 
               <button
-                className="container__main__card__data--button"
+                className="container__main__card__data--button2"
                 type="button"
                 onClick={datosUsuario}
                 disabled={controlBoton}

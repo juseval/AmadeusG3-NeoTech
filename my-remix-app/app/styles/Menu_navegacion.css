@@ -5,7 +5,7 @@
   background-color: #fff;
   top: 0;
   width: 100%;
-  height: 60px;
+  min-height: 60px;
 }
 
 .nav__container {
@@ -34,7 +34,7 @@
   margin: 5px;
 }
 
-.nav__lista li{
+.nav__lista li {
   text-decoration: none;
   list-style: none;
 }
@@ -45,94 +45,36 @@
   font-size: 1.25em;
   margin: 5px;
   padding: 5px;
-}
-
-.nav__lista li a:hover {
-  background-color: #c5d5f9;
-  padding: 2px;
-}
-
-.nav__button {
-  color: var(--parrafo-color);
-  font-size: 1.25em;
-  margin: 5px;
-  padding: 5px;
-  border: none;
-  background-color: transparent;
-}
-
-.nav__button:hover {
-  background-color: #c5d5f9;
-  padding: 2px;
-}
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.modal-input {
-  margin-Bottom: 10px;
-  margin-top: 10px;
-  padding: 8px; 
-  width: 100%;
-  border: 1px solid #ccc;
-}
-
-.modal-buttons {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.modal-button {
-  border-radius: 8px;
-  font-size: medium;
-  width: auto;
-  height: auto;
-  padding: 5px 10px;
-  margin: auto;
-  border: 1px solid;
-  background-color: transparent;
-}
-
-.modal-button:hover {
-  color: #c5d5f9;
-  background-color: #3a8bff;
+  transition: color 0.5s;
   cursor: pointer;
 }
 
-@media screen and (max-width: 730px) {
-  .nav__logo {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 5px;
-  }
+.nav__lista li a:hover {
+  color: rgb(53,141,223);
+  border-bottom: 1px solid rgb(53,141,223);
+}
 
-  .nav__lista {
-    display: flex;
+@media (min-width: 1200px) { 
+
+}
+
+
+@media (min-width: 760px) and (max-width: 1199px) { 
+
+}
+
+
+@media (max-width: 767px) { 
+  .nav{
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin: 5px;
+  }
+  .nav__container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
+
+
+@media (max-width: 480px){ }

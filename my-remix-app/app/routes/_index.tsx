@@ -43,9 +43,14 @@ export default function Index() {
           email: data.email,
           tipo_Usuario: data.tipo_Usuario
         }
+        
         localStorage.setItem("usuario", JSON.stringify(usuario));
         localStorage.setItem("avatar", "./ava11.png");
-        navigate("/Tarjetas");
+        if (data.tipo_Usuario == 1) {
+          navigate("/Report");
+        } else {
+          navigate("/Tarjetas");
+        }
       }
       else {
         navigate("/Perfil", {
@@ -96,7 +101,7 @@ export default function Index() {
                   ></path>
                 </svg>
               </div>
-              <span>Iniciar</span>
+              <span className="textButton">Iniciar</span>
             </button>
           </div>
         </div>

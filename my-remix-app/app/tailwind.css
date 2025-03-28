@@ -9,3 +9,9 @@
   font-family: sans-serif;
   user-select: none;
 } */
+
+.scope-report {
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+}

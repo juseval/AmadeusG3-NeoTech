@@ -1,6 +1,7 @@
 .container__general{
   display: flex;
   flex-direction:column;
+  align-items: center;
   flex-wrap: wrap;
   width: 90%; 
   height: 100%; 
@@ -147,6 +148,10 @@
   transform: perspective(600px) rotateY(360deg);
 }
 
+.radio{
+  width: 70rem;
+}
+
 .navegacion {
   display: flex;
   flex-direction: column;
@@ -238,7 +243,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  
+  width: 100%;
 }
 
 .botones > button{
