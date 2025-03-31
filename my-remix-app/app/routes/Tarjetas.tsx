@@ -112,6 +112,16 @@ export default function Tarjetas() {
     console.log("Respuestas: ", respuestas);
   };
 
+  const volverInicio = () => {
+    var confirmar = confirm("¿Desea ingresar con otro usuario y restablecer las opciones seleccionadas?")
+    if(confirmar == false){
+      return;
+    } else {
+    localStorage.clear();
+    navigate("/");
+    } 
+  };
+
   const pregunta = preguntas[indice];
   const opcionesActuales = opciones[indice] || [];
   const imgUrlsActuales = imgUrl[indice] || [];
@@ -162,8 +172,7 @@ export default function Tarjetas() {
             <li
               className="perfil"
               onClick={() => {
-              localStorage.clear();
-              navigate("/");
+                volverInicio();
               }}
             >
               Inicio

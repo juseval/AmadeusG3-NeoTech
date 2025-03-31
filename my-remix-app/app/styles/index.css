@@ -23,17 +23,34 @@
   flex-direction: column;
   justify-content: end;
   align-items: center;
-  margin: 5px;
+  margin: 50px;
   padding: 5px;
   width: 100%;
   height: 50vh;
   background-color: var(--parrafo-color);
   position: relative;
-  background: url(./tiera.png);
+  background: url(./viajes.jpeg);
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat;  
+  animation: backgroundFade 20s infinite;
 }
+
+@keyframes backgroundFade {
+  0% {
+    background-image: url(./viajes.jpeg);
+  }
+  33% {
+    background-image: url(./paises.jpeg);
+  }
+  66% {
+    background-image: url(./viajes1.jpg);
+  }
+  100% {
+    background-image: url(./viajes.jpeg);
+  }
+}
+
 .play:hover {
   opacity: 0.9;
 }
@@ -64,7 +81,6 @@
 .container__main__card__data--input{
   width: 20vw;
   padding: 0.3vw 0;
-  border-radius: 15px;
   border: none;
   text-align: center;
   font-size: 1.5vw;

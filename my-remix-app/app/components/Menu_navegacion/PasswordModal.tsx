@@ -43,16 +43,43 @@ export const PasswordModal: React.FC<PasswordModalProps> = ({ onClose, onAccess 
           boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
           textAlign: "center",
       }}>
-          <h2>Ingrese la Contraseña</h2>
+          <p>Ingrese su Contraseña</p>
+          <br></br>
           <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               style={{ marginBottom: "10px", padding: "8px", width: "100%" }}
           />
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <button onClick={handleAccess} style={{ padding: "8px 16px" }}>Acceder</button>
-              <button onClick={onClose} style={{ padding: "8px 16px" }}>Cerrar</button>
+          <div style={{ display: "flex", justifyContent:"space-between"}}>
+                <button 
+                onClick={handleAccess} 
+                style={{ 
+                  padding: "8px 16px", 
+                  cursor: "pointer", 
+                  backgroundColor: "#f0f0f0", 
+                  border: "1px solid #ccc",
+                  transition: "background-color 0.3s"
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#e0e0e0"}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "#f0f0f0"}
+                >
+                Acceder
+                </button>
+                <button 
+                onClick={onClose} 
+                style={{ 
+                  padding: "8px 16px", 
+                  cursor: "pointer", 
+                  backgroundColor: "#f0f0f0", 
+                  border: "1px solid #ccc",
+                  transition: "background-color 0.3s"
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#e0e0e0"}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "#f0f0f0"}
+                >
+                Cerrar
+                </button>
           </div>
       </div>
   </div>

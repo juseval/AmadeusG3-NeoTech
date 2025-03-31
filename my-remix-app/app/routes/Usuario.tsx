@@ -72,17 +72,6 @@ export function Usuario() {
                 />
                 <button className="buttonSesion">Iniciar sesion</button>
               </div>
-              {/*  //Avatar administrativo 
-
-              <div className="dividir">
-                <img
-                  className="imgIcon"
-                  src="https://cdn-icons-png.flaticon.com/512/9187/9187532.png"
-                  alt="planetaIcon"
-                />
-                <button onClick={()=>navigate("./administrador")} className="buttonSesion">Administrador</button>
-              </div>*/}
-              
             </>
           ) : (
             <>
