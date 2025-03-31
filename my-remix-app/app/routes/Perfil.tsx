@@ -17,8 +17,8 @@ export default function Perfil() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [nombre, setNombre] = useState("");
   const location = useLocation();
-  const { correo } = location.state || {};
-  const [estadoCorreo, setEstadoCorreo] = useState("");
+  const { correo, setCorreo } = location.state || {};
+  const [estadoDatos, setEstadoDatos] = useState("");
   const [aceptado, setAceptado] = useState(false);
   const [controlBoton, setControlBoton] = useState(true);
   const navigate = useNavigate();
@@ -31,16 +31,9 @@ export default function Perfil() {
   }, [searchParams]);
 
   useEffect(() => {
-    verificarCorreo();
+    verificarDatos();
     console.log("Correo recibido:",correo);
-  }, [correo, aceptado]);
-
-  // useEffect(() => {
-  //   if (correo) {
-  //     console.log("Correo recibido: ", correo);
-  //     // Aquí puedes usar el valor de correo como necesites
-  //   }
-  // }, [correo]);
+  }, [correo, aceptado, nombre]);
 
   const plusSlides = (n: number) => {
     setSlideIndex((prev) => (prev + n + avatarImages.length) % avatarImages.length);
@@ -50,27 +43,16 @@ export default function Perfil() {
     setSlideIndex(n);
   };
 
-  // const verificarCorreo = () => {
-  //   const regEmail =
-  //     /^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
-  //   if (!regEmail.test(correo)) {
-  //     setEstadoCorreo("Correo no válido");
-  //     setControlBoton(true);
-  //   } else if (!aceptado) {
-  //     setEstadoCorreo("Debe aceptar los términos y condiciones");
-  //     setControlBoton(true);
-  //   } else {
-  //     setEstadoCorreo("");
-  //     setControlBoton(false);
-  //   }
-  // };
-
-  const verificarCorreo = () => {
-    if (!aceptado) {
-      setEstadoCorreo("Debe aceptar los términos y condiciones");
+  const verificarDatos = () => {
+    if (!aceptado || nombre === "") {
+      if(nombre === "") {
+        setEstadoDatos("Ingrese un nombre de Usuario");
+      } else if (!aceptado) {
+      setEstadoDatos("Aceptar los términos y condiciones");
+      }
       setControlBoton(true);
     } else {
-      setEstadoCorreo("");
+      setEstadoDatos("");
       setControlBoton(false);
     }
   };
@@ -78,7 +60,8 @@ export default function Perfil() {
   const user ={
     full_Name: nombre,
     email: location.state.correo,
-    tipo_Usuario: 0
+    tipo_Usuario: 0,
+    avatar: avatarImages[slideIndex],
   }
 
   const datosUsuario = async () => {
@@ -91,7 +74,8 @@ export default function Perfil() {
         id: data.id,
         full_Name: data.full_Name,
         email: data.email,
-        tipo_Usuario: data.tipo_Usuario
+        tipo_Usuario: data.tipo_Usuario,
+        avatar: data.avatar,
       }
       localStorage.setItem("usuario", JSON.stringify(usuario));
       localStorage.setItem("avatar", avatarImages[slideIndex]);
@@ -143,14 +127,7 @@ export default function Perfil() {
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
               />
-              {/*<input
-                className="container__main__card__data--input"
-                type="email"
-                placeholder="Correo electrónico"
-                value={correo}
-                onChange={(e) => setCorreo(e.target.value)}
-              />
-              <label className="container__main__card__data--alert">{estadoCorreo}</label>*/}
+              <label className="container__main__card__data--alert">{estadoDatos}</label>
 
               <div className="container__main__card__data--personalData">
                 <input

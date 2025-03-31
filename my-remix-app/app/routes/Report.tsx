@@ -92,7 +92,7 @@ export default function Report() {
     <div className="scope-report">
       <MenuNavegacion />
       <div>
-        <Card className="grid grid-cols-2 gap-5 mt-8" style={{ width: "100%" }}>
+        <Card className="grid grid-cols-3 gap-5 mt-8" style={{ width: "100%" }}>
           <h1 className="text-2xl font-bold">Estadísticas</h1>
           <button
             className="text-blue-500 hover:text-blue-700 font-bold text-lg back"
@@ -100,7 +100,15 @@ export default function Report() {
               navigate("/Tarjetas");
             }}
           >
-            Regresar a Tarjetas
+            Tarjetas
+          </button>
+          <button
+            className="text-blue-500 hover:text-blue-700 font-bold text-lg back"
+            onClick={() => {
+              navigate("/PerfilAdmin");
+            }}
+          >
+            Crear Usuario administador
           </button>
         </Card>
       </div>

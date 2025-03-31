@@ -43,11 +43,13 @@ export default function Index() {
         id: data.id,
         full_Name: data.full_Name,
         email: data.email,
-        tipo_Usuario: data.tipo_Usuario
+        tipo_Usuario: data.tipo_Usuario,
+        avatar: data.avatar,
       };
 
+      console.log(data.avatar);
       localStorage.setItem("usuario", JSON.stringify(usuario));
-      localStorage.setItem("avatar", "./ava11.png");
+      localStorage.setItem("avatar", data.avatar);
 
       if (data.tipo_Usuario == 1) {
         setUsuarioId(data.id);
@@ -72,10 +74,10 @@ export default function Index() {
         <div className="container_index">
           <div className="play"></div>
           <div className="nosotros">
-            <h1>Información</h1>
+            <h1>Amadeus Travel</h1>
             <p>
               ¿Estás cansado de pasar horas buscando el destino perfecto para tu próximo viaje?
-              ¿Te gustaría crear un viaje de acuerdo a tus preferencias y sin complicaciones?
+              ¿Te gustaría crear un viaje de acuerdo a tus preferencias y sin complicaciones?. ¡Juega con nosotros!
               <br /><br />
             </p>
             <input
